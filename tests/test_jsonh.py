@@ -1,7 +1,7 @@
 import json
 from unittest import TestCase
 
-from src.jsonh import dumps, loads, compress, uncompress
+import jsonh
 
 
 class DumpsTest(TestCase):
@@ -22,7 +22,7 @@ class DumpsTest(TestCase):
             'c': [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
         })
 
-        res = dumps(data)
+        res = jsonh.dumps(data)
         self.assertEqual(exp_res, res)
 
 
@@ -59,7 +59,7 @@ class LoadsTest(TestCase):
             ],
         })
 
-        res = loads(data)
+        res = jsonh.loads(data)
         self.assertEqual(exp_res, res)
 
 
@@ -81,7 +81,7 @@ class CompressTest(TestCase):
             'c': [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
         }
 
-        res = compress(data)
+        res = jsonh.compress(data)
         self.assertEqual(exp_res, res)
 
     def test_second_level(self):
@@ -101,7 +101,7 @@ class CompressTest(TestCase):
             },
         }
 
-        res = compress(data)
+        res = jsonh.compress(data)
         self.assertEqual(exp_res, res)
 
     def test_nested(self):
@@ -136,7 +136,7 @@ class CompressTest(TestCase):
             ],
         }
 
-        res = compress(data)
+        res = jsonh.compress(data)
         self.assertEqual(exp_res, res)
 
 
@@ -158,7 +158,7 @@ class UncompressTest(TestCase):
             ]
         }
 
-        res = uncompress(data)
+        res = jsonh.uncompress(data)
         self.assertEqual(exp_res, res)
 
     def test_second_level(self):
@@ -178,7 +178,7 @@ class UncompressTest(TestCase):
             },
         }
 
-        res = uncompress(data)
+        res = jsonh.uncompress(data)
         self.assertEqual(exp_res, res)
 
     def test_nested(self):
@@ -213,5 +213,5 @@ class UncompressTest(TestCase):
             ],
         }
 
-        res = uncompress(data)
+        res = jsonh.uncompress(data)
         self.assertEqual(exp_res, res)
