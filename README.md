@@ -45,5 +45,7 @@ data = {
     ],
 }
 
-compressed = jsonh.dumps(data)
+dumped = jsonh.dumps(data)
+loaded = jsonh.loads(dumped)
+
 ```
