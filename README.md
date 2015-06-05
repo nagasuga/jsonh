@@ -19,7 +19,7 @@ This version is a wrapper around the [JSONH](https://github.com/WebReflection/JS
 ## Installation
 
 ```
-pip install git+https://github.com/nagasuga/jsonh#egg=jsonh
+pip install git+https://github.com/nagasuga/jsonh
 ```
 
 ## Usage
