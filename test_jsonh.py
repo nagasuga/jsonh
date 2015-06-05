@@ -1,6 +1,66 @@
+import json
 from unittest import TestCase
 
-from .jsonh import compress, uncompress
+from .jsonh import dumps, loads, compress, uncompress
+
+
+class DumpsTest(TestCase):
+    def test_compress(self):
+        data = {
+            'a': 1,
+            'b': 2,
+            'c': [
+                {'name': 'john', 'age': 12},
+                {'name': 'steve', 'age': 55},
+                {'name': 'phillipe', 'age': 23},
+            ]
+        }
+
+        exp_res = json.dumps({
+            'a': 1,
+            'b': 2,
+            'c': [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
+        })
+
+        res = dumps(data)
+        self.assertEqual(exp_res, res)
+
+
+class LoadsTest(TestCase):
+    def test_nested(self):
+        exp_res = {
+            'data': [
+                {
+                    'email': 'test.1@email.com',
+                    'data': [
+                        {'name': 'john', 'age': 12},
+                        {'name': 'steve', 'age': 55},
+                        {'name': 'phillipe', 'age': 23},
+                    ],
+                },
+                {
+                    'email': 'test.2@email.com',
+                    'data': [
+                        {'name': 'john', 'age': 12},
+                        {'name': 'steve', 'age': 55},
+                        {'name': 'phillipe', 'age': 23},
+                    ],
+                },
+            ]
+        }
+
+        data = json.dumps({
+            'data': [ 
+                2, 'data', 'email',
+                [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
+                'test.1@email.com',
+                [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
+                'test.2@email.com',
+            ],
+        })
+
+        res = loads(data)
+        self.assertEqual(exp_res, res)
 
 
 class CompressTest(TestCase):
