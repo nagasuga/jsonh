@@ -1,7 +1,7 @@
 import json
 from unittest import TestCase
 
-from .jsonh import dumps, loads, compress, uncompress
+from src.jsonh import dumps, loads, compress, uncompress
 
 
 class DumpsTest(TestCase):
