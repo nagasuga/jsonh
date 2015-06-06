@@ -13,14 +13,14 @@ class DumpsTest(TestCase):
                 {'name': 'john', 'age': 12},
                 {'name': 'steve', 'age': 55},
                 {'name': 'phillipe', 'age': 23},
-            ]
+            ],
         }
 
         exp_res = json.dumps({
             'a': 1,
             'b': 2,
             'c': [2, 'age', 'name', 12, 'john', 55, 'steve', 23, 'phillipe'],
-        })
+        }, separators=(',', ':'))
 
         res = jsonh.dumps(data)
         self.assertEqual(exp_res, res)

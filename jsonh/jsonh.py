@@ -22,10 +22,15 @@ import json
 
 
 def dump(obj, fp, *args, **kwargs):
+    if 'separators' not in kwargs:
+        kwargs['separators'] = (',', ':')
     return json.dump(compress(obj), fp, *args, **kwargs)
 
 
 def dumps(obj, *args, **kwargs):
+    # No white spaces for separators to compress furthermore by default
+    if 'separators' not in kwargs:
+        kwargs['separators'] = (',', ':')
     return json.dumps(compress(obj), *args, **kwargs)
 
 
